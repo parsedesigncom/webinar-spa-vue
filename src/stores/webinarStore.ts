@@ -120,6 +120,14 @@ export const useWebinarStore = defineStore('webinar', () => {
     );
 
     /**
+     * Get webinar by slug (for route /:slug)
+     */
+    function getWebinarBySlug(slug: string): WebinarItem | null {
+        if (!slug) return null;
+        return webinarsBySlug.value[slug] ?? null;
+    }
+
+    /**
      * Get template number from a webinar.
      * Fallback: "w01" if nothing is set.
      */
