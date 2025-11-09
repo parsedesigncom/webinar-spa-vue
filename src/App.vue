@@ -5,11 +5,6 @@
 <template>
   <div>
     <RouterView />
-    <hr>
-    <nav>
-      <RouterLink to="/">Home</RouterLink> |
-      <RouterLink to="/trippel">Trippel-View</RouterLink>
-    </nav>
   </div>
 </template>
 
