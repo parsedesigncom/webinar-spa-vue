@@ -2,6 +2,7 @@
 import { computed, onMounted, ref} from 'vue';
 import { useRoute } from 'vue-router';
 import { useWebinarStore } from '@/stores/webinarStore';
+import Loading from '@/components/Loading.vue';
 
 const webinarStore = useWebinarStore();
 const route = useRoute();
@@ -84,7 +85,7 @@ onMounted(() => {
 <template>
   <main>
     <div v-if="webinarStore.isLoading">
-      Loading webinar configuration...
+      <Loading name="Loading-b" width="200px" height="200px" />
     </div>
 
     <div v-else-if="webinarStore.error">
