@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import GapComponent from "@/components/tools/GapComponent.vue";
 import type { WebinarItem } from '@/stores/webinarStore';
 
@@ -8,15 +8,45 @@ const props = defineProps<{
   activeWebinar: WebinarItem
 }>();
 
+// State für das Popup
+const showPopup = ref(false);
+
+const openPopup = () => {
+  showPopup.value = true;
+};
+
+const closePopup = () => {
+  showPopup.value = false;
+};
 </script>
 
 <template>
   <div class="webinar-cta-holder">
     <div class="webinar-cta-button">
       <div class="icon">
-        <svg id="e58d1b70-d4bc-40f6-bea0-0566404ba333" height="512" viewBox="0 0 156 156" width="512" xmlns="http://www.w3.org/2000/svg"><g fill="rgb(0,0,0)"><path d="m111.42 61.91c-1.13 14.09-11.29 38.09-28.2 37.66 9-11.86 14.41-31.91-1.28-38.1-10.33-4.07-17.6 2.53-19.86 12.28-2.52 10.81 2.44 19.93 11.27 25.65a23.59 23.59 0 0 1 -3.35 2.6c-19.78 12-35.43-14.8-36.26-31.21-.18-3.67-5.81-3.72-5.74 0 .42 23.72 23.29 51.89 48 35.83a26.14 26.14 0 0 0 4.69-4c19 4.09 32.78-25.14 34.07-40.67.18-2.19-3.17-2.18-3.34-.04zm-45.55 14.5c1.43-8.39 9.68-12.59 16-6 7.07 7.27.31 19.91-6.68 27.19-7.68-3.89-10.8-12.51-9.32-21.19z"/><path d="m128 66.35a87.65 87.65 0 0 0 -5.55-19.63 2.81 2.81 0 0 0 -3.45-1.93c-7.91 2.64-14.18 8.4-19.5 14.66a1.91 1.91 0 0 0 2.7 2.69c5.1-4.33 9.65-8.59 15.76-11.1 1.59 5.58 2.35 11.59 5 16.66 1.22 2.21 5.38 1.3 5.04-1.35z"/></g></svg>
+        <img :src="activeWebinar.pdlpfw_form_marketing_arrow" alt="">
       </div>
-      <button class="px-lg py-md text-md font-medium leading-snug font-rubik">{{ activeWebinar.pdlpfw_replay_cta_label || 'Webinar' }}</button>
+      <button @click="openPopup" class="px-lg py-md text-md font-medium leading-snug font-rubik">{{ activeWebinar.pdlpfw_form_submit_label || 'Form submit label' }}</button>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div v-if="showPopup" class="popup-overlay" @click="closePopup">
+      <div class="popup-content p-lg" @click.stop>
+        <button class="close-btn" @click="closePopup">×</button>
+        <p class="text-lg font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_ticker_headline || 'Webinar' }}</p>
+        <GapComponent responsiveConfig="0-10" />
+        <p class="text-xl font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</p>
+        <GapComponent responsiveConfig="0-30" />
+        <div v-if="activeWebinar.pdlpfw_form_description" class="text-base font-rubik font-medium leading-normal">{{ activeWebinar.pdlpfw_form_description || 'Webinar' }}</div>
+        <GapComponent responsiveConfig="0-30" />
+        <div v-if="activeWebinar.pdlpfw_free_or_paid === 'free'" class="variant-free">
+
+        </div>
+
+        <div v-else class="variant-paid">
+          <a target="_blank" class="style-btn-scoped px-lg py-md text-md font-medium leading-snug font-rubik" :href="activeWebinar.pdlpfw_form_paid_link">{{ activeWebinar.pdlpfw_form_submit_label || 'Form submit label' }}</a>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -32,26 +62,70 @@ const props = defineProps<{
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: -120px;
+    margin-left: -130px;
     .icon{
-      rotate: 66deg;
-      margin-top: -40px;
-      svg,*{
-        fill: var(--color-2);
-        max-width: 120px;
-        max-height: 120px;
-      }
+      max-width: 120px;
+      margin-right: 10px;
 
     }
     button{
       border: 1px solid  var(--color-cta-border);
       background: linear-gradient(to bottom, var(--color-cta-from), var(--color-cta-to));
+      color: var(--color-cta-text);
       &:hover{
         background: linear-gradient(to bottom, var(--color-cta-to), var(--color-cta-from));
         cursor: pointer;
       }
     }
   }
+  /* Popup Styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    .popup-content {
+      background: var(--color-2);
+      position: relative;
+      width: 720px;
+      max-width: 90%;
+      color: var(--color-1);
+      .style-btn-scoped{
+        display: block;
+        text-align: center;
+        border: 1px solid  var(--color-cta-border);
+        background: linear-gradient(to bottom, var(--color-cta-from), var(--color-cta-to));
+        color: var(--color-cta-text);
+        text-decoration: none;
+        &:hover{
+          background: linear-gradient(to bottom, var(--color-cta-to), var(--color-cta-from));
+          cursor: pointer;
+        }
+      }
+    }
+    .close-btn {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      background: var(--color-1);
+      border: none;
+      font-size: 3rem;
+      cursor: pointer;
+      line-height: 1;
+      color: var(--color-2);
+    }
+  }
 }
+
+
+
+
+
 
 </style>
