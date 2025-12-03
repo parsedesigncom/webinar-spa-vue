@@ -60,15 +60,23 @@ watch(() => props.name, () => {
 </script>
 
 <template>
-  <div
-      ref="animationContainer"
-      class="animation-container"
-      :style="{ width: props.width, height: props.height }"
-  ></div>
+  <div class="animation-container-holder">
+    <div
+        ref="animationContainer"
+        class="animation-container"
+        :style="{ width: props.width, height: props.height }"
+    ></div>
+  </div>
+
 </template>
 
 <style scoped>
-.animation-container {
+.animation-container-holder {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;

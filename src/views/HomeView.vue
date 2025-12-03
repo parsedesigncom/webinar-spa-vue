@@ -1,13 +1,18 @@
+
 <script setup lang="ts">
 import { computed, onMounted, ref} from 'vue';
 import { useRoute } from 'vue-router';
 import { useWebinarStore } from '@/stores/webinarStore';
 import Loading from '@/components/Loading.vue';
+import AreaOptin from '@/components/area/WebinarAreaOptin.vue';
 
 const webinarStore = useWebinarStore();
 const route = useRoute();
-const showDebug = ref(true);
 
+// Aktuelle Step aus den URL-Parametern
+const currentStep = computed(() => {
+  return route.query.step as string || 'optin';
+});
 
 /**
  * Determine active webinar:
@@ -40,6 +45,24 @@ const activeWebinar = computed(() => {
 
   return null;
 });
+
+const cssVars = computed(() => {
+  if (!activeWebinar.value) return {}
+
+  return {
+    '--color-1': activeWebinar.value.pdlpfw_color_1,
+    '--color-2': activeWebinar.value.pdlpfw_color_2,
+    '--color-3': activeWebinar.value.pdlpfw_color_3,
+    '--color-4': activeWebinar.value.pdlpfw_color_4,
+    '--color-5': activeWebinar.value.pdlpfw_color_5,
+    '--color-6': activeWebinar.value.pdlpfw_color_6,
+    '--color-cta-from': activeWebinar.value.pdlpfw_color_cta_from,
+    '--color-cta-to': activeWebinar.value.pdlpfw_color_cta_to,
+    '--color-cta-border': activeWebinar.value.pdlpfw_color_cta_border,
+    '--color-cta-text': activeWebinar.value.pdlpfw_color_cta_text
+  }
+})
+
 
 /**
  * Page title / heading
@@ -83,7 +106,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
+  <div :style="cssVars">
     <div v-if="webinarStore.isLoading">
       <Loading name="Loading-b" width="200px" height="200px" />
     </div>
@@ -96,12 +119,18 @@ onMounted(() => {
 
       <!-- Your actual template w01 / w02 etc. will be added here later -->
 
-      <header v-if="activeWebinar">
-        <h1>{{ pageTitle }}</h1>
-        <p v-if="(activeWebinar as any).pdlpfw_webinar_subheadline">
-          {{ (activeWebinar as any).pdlpfw_webinar_subheadline }}
-        </p>
-      </header>
+      <div v-if="activeWebinar">
+        <div class="webinar-area webinar-area-optin" v-if="currentStep === 'optin'">
+          <AreaOptin :active-webinar="activeWebinar" />
+        </div>
+        <div class="webinar-area webinar-area-thanks" v-if="currentStep === 'thanks'">
+          thanks
+        </div>
+        <div class="webinar-area webinar-area-replay" v-if="currentStep === 'replay'">
+          replay
+        </div>
+
+      </div>
 
       <!-- Your actual template w01 / w02 etc. will be added here later -->
 
@@ -109,30 +138,12 @@ onMounted(() => {
         No webinar found.
       </p>
 
-
-      <section v-if="showDebug" class="debug">
-        <h2>Debug: Aktives Webinar</h2>
-        <pre v-if="debugActiveWebinar">{{ debugActiveWebinar }}</pre>
-        <p v-else>— kein aktives Webinar —</p>
-
-        <h2>Debug: Config</h2>
-        <pre v-if="debugConfig">{{ debugConfig }}</pre>
-        <p v-else>— keine Config —</p>
-
-        <h2>Debug: Alle Webinare (roh)</h2>
-        <pre v-if="debugWebinars">{{ debugWebinars }}</pre>
-        <p v-else>— keine Webinare —</p>
-      </section>
-      
     </section>
 
 
-  </main>
+  </div>
 </template>
 
 <style scoped>
-pre{
-  text-align: left;
-  font-size: 1.2em;
-}
+
 </style>
