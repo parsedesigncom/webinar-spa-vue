@@ -81,8 +81,6 @@ const props = defineProps<{
           <span class="text " v-html="activeWebinar.pdlpfw_bulletpoint_8"></span>
         </li>
       </ul>
-      <GapComponent responsiveConfig="0-40" />
-      <WebinarCta :activeWebinar="activeWebinar" />
     </div>
   </div>
 

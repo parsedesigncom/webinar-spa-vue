@@ -126,6 +126,9 @@ onMounted(() => {
         <div class="webinar-area webinar-area-optin" v-if="currentStep === 'optin'">
           <AreaOptinHeader :active-webinar="activeWebinar" />
           <AreaOptinBody :active-webinar="activeWebinar" />
+          <GapComponent responsiveConfig="0-50" />
+          <WebinarCta :activeWebinar="activeWebinar" />
+          <GapComponent responsiveConfig="0-50" />
         </div>
         <div class="webinar-area webinar-area-thanks" v-if="currentStep === 'thanks'">
           thanks
