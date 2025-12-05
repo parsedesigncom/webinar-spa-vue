@@ -1,5 +1,6 @@
 // Importiere die Schriftarten-Variablen
-@import './vars.scss';
+@use "sass:map";
+@use './vars.scss' as *;
 
 // Haupt-Typografie-Mixin
 @mixin typography(
@@ -18,22 +19,22 @@
   }
 
   // Schriftgröße
-  @if map-has-key($font-sizes, $size) {
-    font-size: map-get($font-sizes, $size);
+  @if map.has-key($font-sizes, $size) {
+    font-size: map.get($font-sizes, $size);
   } @else {
     font-size: $size; // Falls eine direkte Größe (wie 1.2rem) übergeben wurde
   }
 
   // Schriftgewicht
-  @if map-has-key($font-weights, $weight) {
-    font-weight: map-get($font-weights, $weight);
+  @if map.has-key($font-weights, $weight) {
+    font-weight: map.get($font-weights, $weight);
   } @else {
     font-weight: $weight; // Falls ein direkter Wert übergeben wurde
   }
 
   // Zeilenhöhe
-  @if map-has-key($line-heights, $line-height) {
-    line-height: map-get($line-heights, $line-height);
+  @if map.has-key($line-heights, $line-height) {
+    line-height: map.get($line-heights, $line-height);
   } @else {
     line-height: $line-height; // Falls ein direkter Wert übergeben wurde
   }

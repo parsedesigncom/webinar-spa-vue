@@ -3,8 +3,11 @@
 import { computed, onMounted, ref} from 'vue';
 import { useRoute } from 'vue-router';
 import { useWebinarStore } from '@/stores/webinarStore';
-import Loading from '@/components/Loading.vue';
-import AreaOptin from '@/components/area/WebinarAreaOptin.vue';
+import Loading from '@/components/tools/Loading.vue';
+import AreaOptinHeader from '@/components/area/optin/Header.vue';
+import AreaOptinBody from '@/components/area/optin/Body.vue';
+import WebinarCta from "@/components/area/optin/Cta.vue";
+import GapComponent from "@/components/tools/GapComponent.vue";
 
 const webinarStore = useWebinarStore();
 const route = useRoute();
@@ -106,7 +109,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :style="cssVars">
+  <div class="homeViewHolder" :style="cssVars">
     <div v-if="webinarStore.isLoading">
       <Loading name="Loading-b" width="200px" height="200px" />
     </div>
@@ -121,7 +124,8 @@ onMounted(() => {
 
       <div v-if="activeWebinar">
         <div class="webinar-area webinar-area-optin" v-if="currentStep === 'optin'">
-          <AreaOptin :active-webinar="activeWebinar" />
+          <AreaOptinHeader :active-webinar="activeWebinar" />
+          <AreaOptinBody :active-webinar="activeWebinar" />
         </div>
         <div class="webinar-area webinar-area-thanks" v-if="currentStep === 'thanks'">
           thanks
@@ -144,6 +148,12 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style  lang="scss">
+.homeViewHolder{
+  background: var(--color-5);
+  min-height: 100vh;
+}
+
+
 
 </style>

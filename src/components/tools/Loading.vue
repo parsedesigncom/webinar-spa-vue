@@ -25,7 +25,7 @@ const loadAnimation = async () => {
       }
 
       // JSON-Datei dynamisch importieren
-      const animationData = await import(`../assets/${props.name}.json`);
+      const animationData = await import(`../../assets/${props.name}.json`);
 
       // Neue Animation erstellen
       animation.value = lottie.loadAnimation({

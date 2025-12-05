@@ -1,9 +1,8 @@
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import type { WebinarItem } from '@/stores/webinarStore';
 import GapComponent from "@/components/tools/GapComponent.vue";
-import WebinarCta from "@/components/area/WebinarCta.vue";
+import WebinarCta from "@/components/area/optin/Cta.vue";
 
 // Define die activeWebinar prop
 const props = defineProps<{
@@ -14,13 +13,13 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="webinar-area-optin-holder px-xl py-3xl">
+  <div class="webinar-area-optin-header-holder px-xl py-3xl">
     <div class="pdlpfw_ticker_headline">
-      <h2 class="text-lg font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_ticker_headline || 'Webinar' }}</h2>
+      <h2 class="text-lg font-rubik font-medium  text-center leading-tight">{{ activeWebinar.pdlpfw_ticker_headline || 'Webinar' }}</h2>
     </div>
     <GapComponent responsiveConfig="0-10" />
     <div class="pdlpfw_webinar_title">
-      <h1 class="text-4xl font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</h1>
+      <h1 class="text-4xl font-rubik font-light text-center leading-tight">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</h1>
     </div>
     <GapComponent responsiveConfig="0-30" />
     <div class="pdlpfw_webinar_short_description container-small">
@@ -29,13 +28,13 @@ const props = defineProps<{
       </p>
     </div>
     <GapComponent responsiveConfig="0-40" />
-    <WebinarCta :active-webinar="activeWebinar" />
+    <WebinarCta :activeWebinar="activeWebinar" />
 
   </div>
 </template>
 
 <style lang="scss" scoped>
-.webinar-area-optin-holder{
+.webinar-area-optin-header-holder{
   background: var(--color-3);
   color: var(--color-2);
   .pdlpfw_ticker_headline{

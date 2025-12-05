@@ -1,8 +1,16 @@
-@import "/src/assets/scss/reset";
-@import "/src/assets/fonts/poppions/stylesheet.css";
-@import "/src/assets/fonts/rubik/stylesheet.css";
-@import "/src/assets/scss/vars";
-@import "/src/assets/scss/typo";
-@import "/src/assets/scss/size";
+@use "/src/assets/scss/reset" as *;
+@use "/src/assets/fonts/poppions/Poppins.css" as *;
+@use "/src/assets/fonts/rubik/Rubik.css" as *;
+@use "/src/assets/scss/vars" as *;
+@use "/src/assets/scss/typo" as *;
+@use "/src/assets/scss/size" as *;
 
-
+.responsive-image{
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+.border-radius{
+  border-radius: var(--border-radius);
+}

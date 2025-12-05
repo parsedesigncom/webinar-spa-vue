@@ -1,67 +1,68 @@
-@import './vars.scss';
+@use "sass:map";
+@use './vars.scss' as *;
 
 // Mixin für Padding in allen Richtungen
 @mixin padding($size) {
-  padding: map-get($spacing-values, $size);
+  padding: map.get($spacing-values, $size);
 }
 
 // Mixin für spezifische Padding-Richtungen
 @mixin padding-x($size) {
-  padding-left: map-get($spacing-values, $size);
-  padding-right: map-get($spacing-values, $size);
+  padding-left: map.get($spacing-values, $size);
+  padding-right: map.get($spacing-values, $size);
 }
 
 @mixin padding-y($size) {
-  padding-top: map-get($spacing-values, $size);
-  padding-bottom: map-get($spacing-values, $size);
+  padding-top: map.get($spacing-values, $size);
+  padding-bottom: map.get($spacing-values, $size);
 }
 
 @mixin padding-t($size) {
-  padding-top: map-get($spacing-values, $size);
+  padding-top: map.get($spacing-values, $size);
 }
 
 @mixin padding-r($size) {
-  padding-right: map-get($spacing-values, $size);
+  padding-right: map.get($spacing-values, $size);
 }
 
 @mixin padding-b($size) {
-  padding-bottom: map-get($spacing-values, $size);
+  padding-bottom: map.get($spacing-values, $size);
 }
 
 @mixin padding-l($size) {
-  padding-left: map-get($spacing-values, $size);
+  padding-left: map.get($spacing-values, $size);
 }
 
 // Mixin für Margin in allen Richtungen
 @mixin margin($size) {
-  margin: map-get($spacing-values, $size);
+  margin: map.get($spacing-values, $size);
 }
 
 // Mixin für spezifische Margin-Richtungen
 @mixin margin-x($size) {
-  margin-left: map-get($spacing-values, $size);
-  margin-right: map-get($spacing-values, $size);
+  margin-left: map.get($spacing-values, $size);
+  margin-right: map.get($spacing-values, $size);
 }
 
 @mixin margin-y($size) {
-  margin-top: map-get($spacing-values, $size);
-  margin-bottom: map-get($spacing-values, $size);
+  margin-top: map.get($spacing-values, $size);
+  margin-bottom: map.get($spacing-values, $size);
 }
 
 @mixin margin-t($size) {
-  margin-top: map-get($spacing-values, $size);
+  margin-top: map.get($spacing-values, $size);
 }
 
 @mixin margin-r($size) {
-  margin-right: map-get($spacing-values, $size);
+  margin-right: map.get($spacing-values, $size);
 }
 
 @mixin margin-b($size) {
-  margin-bottom: map-get($spacing-values, $size);
+  margin-bottom: map.get($spacing-values, $size);
 }
 
 @mixin margin-l($size) {
-  margin-left: map-get($spacing-values, $size);
+  margin-left: map.get($spacing-values, $size);
 }
 
 // Root-Variablen für das gesamte Projekt
@@ -77,11 +78,8 @@
   --section-spacing: var(--spacing-2xl);
 
   // Border-Variablen
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --border-radius-xl: 16px;
-  --border-radius-full: 9999px;
+  --border-radius: 10px;
+  --border-radius-big: 25px;
 
   // Shadow-Variablen
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -106,6 +104,7 @@
   --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
   // Breakpoint-Variablen
+  --breakpoint-default: 800px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
