@@ -9,6 +9,8 @@ import AreaOptinBody from '@/components/area/optin/Body.vue';
 import WebinarCta from "@/components/area/optin/Cta.vue";
 import GapComponent from "@/components/tools/GapComponent.vue";
 import Footer from '@/components/Footer.vue';
+import AreaThanksHeader from '@/components/area/thanks/Header.vue';
+import AreaReplayHeader from '@/components/area/replay/Header.vue';
 
 const webinarStore = useWebinarStore();
 const route = useRoute();
@@ -132,10 +134,10 @@ onMounted(() => {
           <GapComponent responsiveConfig="0-50" />
         </div>
         <div class="webinar-area webinar-area-thanks" v-if="currentStep === 'thanks'">
-          thanks
+          <AreaThanksHeader :active-webinar="activeWebinar" />
         </div>
         <div class="webinar-area webinar-area-replay" v-if="currentStep === 'replay'">
-          replay
+          <AreaReplayHeader :active-webinar="activeWebinar" />
         </div>
 
       </div>

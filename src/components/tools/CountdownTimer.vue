@@ -146,7 +146,7 @@ $countdown-size: 80px;
     left: -2rem;
     right: -2rem;
     top: -2rem;
-    min-height: 130px;
+    min-height: $countdown-min-height;
     background-repeat: no-repeat;
 
     z-index: 0;

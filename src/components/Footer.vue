@@ -42,15 +42,17 @@ const props = defineProps<{
   background: var(--color-1);
   color: var(--color-2);
   .footer{
+    min-height: $footer-height;
     display: flex;
     flex-direction: column;
-    padding: 3rem;
     max-width: $breakpoint-default;
     margin: 0 auto;
+    padding: 2rem;
     @media (min-width: $breakpoint-default) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      padding: 0 2rem;
     }
     .left{
       order: 2;
