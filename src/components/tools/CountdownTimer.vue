@@ -95,15 +95,18 @@ onUnmounted(() => {
         <span class="unit-label">{{ activeWebinar.pdlpfw_countdown_label_seconds }}</span>
       </div>
     </div>
-    <div class="image">
-      <img :src="activeWebinar.pdlpfw_countdown_frame">
+    <div class="image"
+         :style="`background-image: url(${activeWebinar.pdlpfw_countdown_frame})`">
     </div>
+
   </div>
+
 
 </template>
 
 
 <style lang="scss" scoped>
+@use '@/assets/scss/vars' as *;
 $countdown-size: 80px;
 .countdown-holder{
   width: $countdown-size;
@@ -115,6 +118,8 @@ $countdown-size: 80px;
     gap: 1rem;
     justify-content: center;
     text-align: center;
+    position: relative;
+    z-index: 1;
     .unit {
       min-width: 3.2rem;
       background: transparent;
@@ -135,15 +140,17 @@ $countdown-size: 80px;
     }
   }
   .image{
+    background-position: center;
+    background-size: contain;
     position: absolute;
     left: -2rem;
+    right: -2rem;
     top: -2rem;
-    width: 120%;
-    img{
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
+    min-height: 130px;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
   }
 }
 

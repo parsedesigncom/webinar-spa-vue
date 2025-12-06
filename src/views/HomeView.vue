@@ -8,6 +8,7 @@ import AreaOptinHeader from '@/components/area/optin/Header.vue';
 import AreaOptinBody from '@/components/area/optin/Body.vue';
 import WebinarCta from "@/components/area/optin/Cta.vue";
 import GapComponent from "@/components/tools/GapComponent.vue";
+import Footer from '@/components/Footer.vue';
 
 const webinarStore = useWebinarStore();
 const route = useRoute();
@@ -144,6 +145,9 @@ onMounted(() => {
       <p v-else>
         No webinar found.
       </p>
+      <div v-if="activeWebinar">
+        <Footer :activeWebinar="activeWebinar" />
+      </div>
 
     </section>
 
