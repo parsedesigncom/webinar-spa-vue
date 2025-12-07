@@ -67,7 +67,7 @@ const submitForm = async () => {
           <p class="text-xl font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</p>
           <GapComponent responsiveConfig="0-30" />
           <div v-if="activeWebinar.pdlpfw_free_or_paid === 'free'" class="variant-free">
-            <div v-if="activeWebinar.pdlpfw_form_description" class="text-base font-rubik text-center font-medium leading-normal">{{ activeWebinar.pdlpfw_form_description }}</div>
+            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium leading-normal" v-html="activeWebinar.pdlpfw_form_description"></div>
             <GapComponent responsiveConfig="0-30" />
             <form @submit.prevent="submitForm" class="optin-form">
               <input type="text" v-model="formData.name" :placeholder=" activeWebinar.pdlpfw_form_placeholder_name" class="px-lg py-md text-base font-medium leading-snug font-poppins" required>
@@ -81,7 +81,8 @@ const submitForm = async () => {
           </div>
 
           <div v-else class="variant-paid">
-            <div v-if="activeWebinar.pdlpfw_form_description" class="text-base font-rubik font-medium leading-normal">{{ activeWebinar.pdlpfw_form_description }}</div>
+            <GapComponent responsiveConfig="0-30" />
+            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium leading-normal" v-html="activeWebinar.pdlpfw_form_description"></div>
             <GapComponent responsiveConfig="0-30" />
             <a target="_blank" class="style-btn-scoped px-lg py-md text-md font-medium leading-snug font-rubik" :href="activeWebinar.pdlpfw_form_paid_link">{{ activeWebinar.pdlpfw_form_submit_label || 'Form submit label' }}</a>
           </div>
@@ -142,6 +143,12 @@ const submitForm = async () => {
         max-width: 90%;
         border-radius: var(--border-radius);
         color: var(--color-1);
+        .description{
+          :deep(ul), :deep(ol){
+            list-style: revert;
+            margin-left: 20px;
+          }
+        }
         .style-btn-scoped{
           display: block;
           border-radius: var(--border-radius);
@@ -171,6 +178,7 @@ const submitForm = async () => {
             }
           }
         }
+
       }
       .close-btn {
         position: absolute;
@@ -186,6 +194,8 @@ const submitForm = async () => {
       }
     }
   }
+
+
 
 }
 </style>

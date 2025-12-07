@@ -1,10 +1,3 @@
-@use "/src/assets/scss/reset" as *;
-@use "/src/assets/fonts/poppions/Poppins.css" as *;
-@use "/src/assets/fonts/rubik/Rubik.css" as *;
-@use "/src/assets/scss/vars" as *;
-@use "/src/assets/scss/typo" as *;
-@use "/src/assets/scss/size" as *;
-
 .responsive-image{
   display: block;
   margin: auto;
@@ -13,4 +6,23 @@
 }
 .border-radius{
   border-radius: var(--border-radius);
+}
+.style-global-content {
+  // Listen wieder einrücken
+  :deep(ul),
+  :deep(ol) {
+    margin-left: 20px !important;
+    padding-left: 20px !important;
+  }
+
+  // Bullet-Style wirklich auf die list-items setzen
+  :deep(ul li),
+  :deep(ol li) {
+    list-style-type: circle !important; // oder disc, wie du magst
+  }
+
+  :deep(strong),
+  :deep(b) {
+    font-weight: bold !important;
+  }
 }

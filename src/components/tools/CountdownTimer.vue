@@ -113,6 +113,9 @@ $countdown-size: 80px;
   min-width: 80%;
   margin: auto;
   position: relative;
+  .headline{
+    color:  var(--color-1);
+  }
   .countdown {
     display: flex;
     gap: 1rem;

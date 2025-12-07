@@ -21,7 +21,7 @@ const props = defineProps<{
           <VideoEmbed :src="activeWebinar.pdlpfw_replay_video" />
         </div>
         <div class="right">
-          <div class="text-md" v-html="activeWebinar.pdlpfw_replay_description"></div>
+          <div class="text-md style-global-content" v-html="activeWebinar.pdlpfw_replay_description"></div>
           <GapComponent responsiveConfig="0-30" />
           <ReplayCta :activeWebinar="activeWebinar" />
         </div>
