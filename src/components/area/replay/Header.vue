@@ -23,7 +23,7 @@ const props = defineProps<{
         <div class="right">
           <div class="text-md style-global-content" v-html="activeWebinar.pdlpfw_replay_description"></div>
           <GapComponent responsiveConfig="0-30" />
-          <ReplayCta :activeWebinar="activeWebinar" />
+          <ReplayCta v-if="activeWebinar.pdlpfw_replay_cta_link" :activeWebinar="activeWebinar" />
         </div>
       </div>
     </div>
