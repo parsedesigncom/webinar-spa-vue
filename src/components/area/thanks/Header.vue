@@ -13,9 +13,9 @@ const props = defineProps<{
 
   <div class="webinar-area-thanks-header-holder px-xl py-3x font-poppins">
     <div class="container-small">
-      <h1 class="text-4xl font-light leading-tight font-rubik">{{activeWebinar.pdlpfw_thanks_headline}}</h1>
+      <h1 class="text-4xl font-light font-rubik">{{activeWebinar.pdlpfw_thanks_headline}}</h1>
       <GapComponent responsiveConfig="0-30" />
-      <div class="text-base font-medium leading-normal style-global-content" v-html="activeWebinar.pdlpfw_thanks_description"></div>
+      <div class="text-html text-base font-medium style-global-content" v-html="activeWebinar.pdlpfw_thanks_description"></div>
       <div v-if="activeWebinar.pdlpfw_thanks_countdown_enabled != 0">
         <GapComponent responsiveConfig="0-30" />
         <div class="CountdownTimer-holder">

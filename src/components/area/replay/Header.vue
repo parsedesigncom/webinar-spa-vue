@@ -14,14 +14,15 @@ const props = defineProps<{
 
   <div class="webinar-area-replay-header-holder px-xl py-3x font-poppins">
     <div class="replay-content">
-      <h1 class="text-3xl font-light leading-tight font-rubik text-center">{{activeWebinar.pdlpfw_replay_headline}}</h1>
+      <h1 class="text-3xl font-light font-rubik text-center">{{activeWebinar.pdlpfw_replay_headline}}</h1>
       <GapComponent responsiveConfig="0-30" />
       <div class="grid">
         <div class="left">
           <VideoEmbed :src="activeWebinar.pdlpfw_replay_video" />
+          <GapComponent responsiveConfig="0-50#1200-0" />
         </div>
         <div class="right">
-          <div class="text-md style-global-content" v-html="activeWebinar.pdlpfw_replay_description"></div>
+          <div class="text-html text-md style-global-content" v-html="activeWebinar.pdlpfw_replay_description"></div>
           <GapComponent responsiveConfig="0-30" />
           <ReplayCta v-if="activeWebinar.pdlpfw_replay_cta_link" :activeWebinar="activeWebinar" />
         </div>
@@ -55,13 +56,12 @@ $width-replay-page : 1200px;
       color: var(--color-1);
     }
     .grid{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
       @media (min-width: $width-replay-page) {
+        display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
       }
       .left{
         flex: 1;

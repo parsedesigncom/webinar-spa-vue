@@ -25,11 +25,14 @@ $font-weights: (
 );
 
 $line-heights: (
-        'tight': 1,
-        'snug': 1.375,
-        'normal': 1.5,
-        'relaxed': 1.625,
-        'loose': 2,
+        'ziro': 0,
+        'inherit': inherit,
+        'initial': initial,
+        'tight': 1rem,
+        'snug': 1.375rem,
+        'normal': 1.5rem,
+        'relaxed': 1.625rem,
+        'loose': 2rem,
 );
 
 // Spacing-Werte für Padding und Margin

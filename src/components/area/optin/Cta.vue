@@ -40,6 +40,11 @@ const submitForm = async () => {
     formData.value = { name: '', email: '' };
 
     closePopup();
+
+    if (props.activeWebinar.pdlpfw_thanks_url) {
+      window.location.href = props.activeWebinar.pdlpfw_thanks_url;
+    }
+
   } catch (error) {
     console.error('Error sending:', error);
     // Hier könntest du noch eine Fehlermeldung für den User anzeigen (z.B. über einen Toast oder Alert)
@@ -62,12 +67,12 @@ const submitForm = async () => {
       <div v-if="showPopup" class="popup-overlay" @click="closePopup">
         <div class="popup-content p-lg" @click.stop>
           <button class="close-btn" @click="closePopup">×</button>
-          <p class="text-lg font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_ticker_headline || 'Webinar' }}</p>
+          <p class="text-lg font-rubik font-medium text-center">{{ activeWebinar.pdlpfw_ticker_headline || 'Webinar' }}</p>
           <GapComponent responsiveConfig="0-10" />
-          <p class="text-xl font-rubik font-medium text-center leading-tight">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</p>
+          <p class="text-xl font-rubik font-medium text-center">{{ activeWebinar.pdlpfw_webinar_title || 'Webinar' }}</p>
           <GapComponent responsiveConfig="0-30" />
           <div v-if="activeWebinar.pdlpfw_free_or_paid === 'free'" class="variant-free">
-            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium leading-normal" v-html="activeWebinar.pdlpfw_form_description"></div>
+            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium text-html" v-html="activeWebinar.pdlpfw_form_description"></div>
             <GapComponent responsiveConfig="0-30" />
             <form @submit.prevent="submitForm" class="optin-form">
               <input type="text" v-model="formData.name" :placeholder=" activeWebinar.pdlpfw_form_placeholder_name" class="px-lg py-md text-base font-medium leading-snug font-poppins" required>
@@ -82,7 +87,7 @@ const submitForm = async () => {
 
           <div v-else class="variant-paid">
             <GapComponent responsiveConfig="0-30" />
-            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium leading-normal" v-html="activeWebinar.pdlpfw_form_description"></div>
+            <div v-if="activeWebinar.pdlpfw_form_description" class="style-global-content description text-base font-rubik font-medium text-html" v-html="activeWebinar.pdlpfw_form_description"></div>
             <GapComponent responsiveConfig="0-30" />
             <a target="_blank" class="style-btn-scoped px-lg py-md text-md font-medium leading-snug font-rubik" :href="activeWebinar.pdlpfw_form_paid_link">{{ activeWebinar.pdlpfw_form_submit_label || 'Form submit label' }}</a>
           </div>
