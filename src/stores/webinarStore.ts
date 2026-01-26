@@ -182,6 +182,16 @@ export const useWebinarStore = defineStore('webinar', () => {
         }
     }
 
+    function getWebinarById(id: string | number): WebinarItem | null {
+        const key = String(id);
+        return webinars.value?.[key] ?? null;
+    }
+
+    function getWebinarSlugById(id: string | number): string | null {
+        const webinar = getWebinarById(id);
+        return getWebinarSlug(webinar);
+    }
+
     return {
         // state
         isLoading,
@@ -202,6 +212,8 @@ export const useWebinarStore = defineStore('webinar', () => {
         getWebinarBySlug,
         getTemplateNumberBySlug,
         getTemplateNumber,
+        getWebinarById,
+        getWebinarSlugById,
         // Actions
         loadWebinarConfig,
     };
